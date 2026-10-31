@@ -1,0 +1,591 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{% if lang == 'es' %}es{% else %}en{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUTIMI</title>
+
+    <!-- Open Graph / Meta / Instagram / WhatsApp / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tutimi.com/">
+    <meta property="og:title" content="TUTIMI — Senior Infrastructure Engineer & Cloud Architect">
+    <meta property="og:description" content="With {{ years_experience }}+ years of experience building resilient, high-speed cloud infrastructure, database optimization, and full-stack systems.">
+    <meta property="og:image" content="{% static 'tutimi/images/og-preview.webp' %}">
+    <meta property="og:image:type" content="image/webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TUTIMI — Senior Infrastructure Engineer & Cloud Architect">
+    <meta name="twitter:description" content="With {{ years_experience }}+ years of experience building resilient, high-speed cloud infrastructure, database optimization, and full-stack systems.">
+    <meta name="twitter:image" content="{% static 'tutimi/images/og-preview.webp' %}">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="{% static 'tutimi/images/favicon.svg' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'tutimi/images/favicon-32x32.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'tutimi/images/apple-touch-icon.png' %}">
+    <!-- Compatibilidad legacy -->
+    <link rel="shortcut icon" href="{% static 'tutimi/images/favicon.ico' %}">
+
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .bg-comic1 {
+            background: #A7D3E9;
+        }
+
+        .main-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 1.5rem 2rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .col-summary {
+            order: 1;
+            position: relative;
+            width: auto;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .col-illustration {
+            order: 2;
+            z-index: 1;
+        }
+
+        .illustration-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .placeholder-art {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            min-height: 450px;
+            border: solid 3px #000;
+            color: #888;
+            background: #213889 url("{% static 'tutimi/images/home_3d.svg' %}") no-repeat left center;
+            background-size: 220% 150%;
+        }
+
+        #cover-character {
+            position: relative;
+            margin-left: -40px;
+            margin-right: -1.5rem;
+            margin-bottom: -200px;
+        }
+
+        #cover-img-character {
+            width: 100%;
+        }
+
+        @keyframes iridescentFlash {
+            0% {
+                opacity: 0;
+            }
+            8% {
+                opacity: 0.3;
+            }
+            14% {
+                opacity: 0.8;
+            }
+            18% {
+                opacity: 0.2;
+            }
+            24% {
+                opacity: 0.6;
+            }
+            30%, 100% {
+                opacity: 0;
+            }
+        }
+
+        #cover-img-white-mask,
+        #cover-img-purple-mask,
+        #cover-img-purple-shine-mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 5px);
+            background-size: cover;
+            background-position: center;
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+        }
+
+        #cover-img-white-mask {
+            background-image: url("{% static 'tutimi/images/home_blanco.webp' %}");
+            -webkit-mask-image: url("{% static 'tutimi/images/home_blanco.svg' %}");
+            mask-image: url("{% static 'tutimi/images/home_blanco.svg' %}");
+        }
+
+        #cover-img-purple-mask {
+            background-image: url("{% static 'tutimi/images/home_morado.webp' %}");
+            -webkit-mask-image: url("{% static 'tutimi/images/home_morado.svg' %}");
+            mask-image: url("{% static 'tutimi/images/home_morado.svg' %}");
+        }
+
+        #cover-img-purple-shine-mask {
+            background-image: url("{% static 'tutimi/images/home_morado2.webp' %}");
+            -webkit-mask-image: url("{% static 'tutimi/images/home_morado.svg' %}");
+            mask-image: url("{% static 'tutimi/images/home_morado.svg' %}");
+            animation: iridescentFlash 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            will-change: opacity;
+        }
+
+        .hero-tutimi-logo {
+            position: relative;
+            width: 90%;
+            max-width: 350px;
+            margin: auto;
+            margin-bottom: -4rem;
+            z-index: 1;
+        }
+
+        .hero-identity {
+            border: solid 3px #000;
+            background-color: #DED4F9;
+            padding: 80px 10px 30px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: visible;
+        }
+
+        .languaje-select {
+            position: relative;
+            text-align: right;
+        }
+        
+        .lang-toggle-bubble {
+            position: absolute;
+            top: -60px;
+            right: 0;
+            background: #ffd43b;
+            color: #000000;
+            border: 2.5px solid #000000;
+            padding: 0.2rem 0.3rem;
+            font-weight: 800;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            box-shadow: 3px 3px 0px #000000;
+            z-index: 10;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .lang-toggle-bubble:hover {
+            transform: translate(-2px, -2px) scale(1.05);
+            box-shadow: 5px 5px 0px #000000;
+            background-color: #ffe066;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-tagline {
+            font-size: 1.1rem;
+            color: #000;
+            max-width: 300px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.4rem 0.6rem;
+            text-align: center;
+        }
+
+        .hero-tagline .role {
+            white-space: nowrap;
+        }
+
+        .hero-tagline .sep {
+            color: #111;
+            user-select: none;
+            display: none;
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin: auto;
+        }
+
+        .tag {
+            background-color: #213889;
+            color: #FFF;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .tags-subtitle {
+            display: block;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            color: #333333;
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+        }
+
+        .tags-intercalated {
+            margin: 1rem 0;
+        }
+
+        .about-section {
+            width: 100%;
+        }
+
+        .about-header-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.8rem;
+            padding-top: 0.5rem;
+            z-index: 2;
+            position: relative;
+        }
+
+        .about-title-wrapper {
+            flex: 0 0 auto;
+        }
+
+        .about-title-svg {
+            display: block;
+            margin-bottom: -50px;
+            margin-left: 25px;
+            width: 300px;
+        }
+
+        .site-nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+            padding: 0.5rem 0;
+        }
+
+        .site-nav-links a {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #000000;
+            text-decoration: underline;
+            text-underline-offset: 5px;
+            transition: transform 0.15s ease, color 0.15s ease;
+        }
+
+        .site-nav-links a:hover {
+            color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .site-nav-links a.link-disabled {
+            opacity: 0.4;
+            pointer-events: none;
+            text-decoration: line-through;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .panel-full {
+            grid-column: 1 / -1;
+        }
+
+        .about-panel {
+            background-color: #f5f1ea;
+            border: 2px solid #000000;
+            padding: 1.5rem;
+            box-shadow: 4px 4px 0px #000000;
+            font-size: 0.98rem;
+            line-height: 1.6;
+            color: #000;
+        }
+
+        .highlight-panel {
+            font-size: 1.2rem;
+        }
+
+        .text-highlight {
+            background: linear-gradient(100deg, #ffe066 0%, #ffd43b 100%);
+            padding: 0.1rem 0.35rem;
+            border-radius: 3px;
+            font-weight: 700;
+            color: #000;
+            box-shadow: 1px 1px 0px #000;
+            display: inline;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+        }
+
+        @media (min-width: 715px) and (max-width: 767px) {
+            .hero-tagline {
+                max-width: 100%;
+            }
+
+            .hero-tagline .sep {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .about-header-grid {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                gap: 1.2rem;
+            }
+
+            .about-header-grid .site-nav-links {
+                order: 1;
+            }
+
+            .about-title-wrapper {
+                order: 2;
+            }
+
+            .about-title-svg {
+                max-width: 230px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+
+            .col-illustration {
+                order: 1;
+            }
+
+            .col-summary {
+                order: 2;
+            }
+
+            .skills-tags {
+                max-width: 450px;
+            }
+
+            #cover-character {
+                margin-top: -83px;
+                margin-right: -70px;
+                margin-bottom: -140px;
+            }
+
+            .tags-intercalated .skills-tags {
+                max-width: 600px;
+            }
+        }
+
+        @media (min-width: 965px) {
+            .hero-tagline {
+                max-width: 100%;
+            }
+
+            .hero-tagline span:nth-child(2) {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body class="bg-comic1">
+
+    <main class="main-container">
+        <div class="languaje-select">
+            {% if lang == 'es' %}
+                <a href="/" class="lang-toggle-bubble" title="Switch language to English">ENGLISH</a>
+            {% else %}
+                <a href="/es/" class="lang-toggle-bubble" title="Cambiar idioma a Español">ESPAÑOL</a>
+            {% endif %}
+        </div>
+
+        <section class="hero-grid">
+            <div class="hero-col col-illustration">
+                <div class="illustration-wrapper">
+                    <div class="placeholder-art">
+                        <div id="cover-character">
+                            <img src="{% static 'tutimi/images/home_super.svg' %}?v=1" alt="Cover Character" id="cover-img-character">
+                            <div id="cover-img-white-mask"></div>
+                            <div id="cover-img-purple-mask"></div>
+                            <div id="cover-img-purple-shine-mask"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-col col-summary">
+                {% if lang == 'es' %}
+                    {% static 'tutimi/images/tutimi_logo_es.svg' as logo_src %}
+                {% else %}
+                    {% static 'tutimi/images/tutimi_logo.svg' as logo_src %}
+                {% endif %}
+                <img src="{{ logo_src }}" alt="Tutimi" class="hero-tutimi-logo">
+                
+                <header class="hero-identity">
+                    <p class="hero-tagline">
+                        <span class="role">{% if lang == 'es' %}Arquitecto Cloud{% else %}Cloud Architect{% endif %}</span>
+                        <span class="sep">|</span>
+                        <span class="role">{% if lang == 'es' %}Ingeniero Senior de Infraestructura{% else %}Senior Infrastructure Engineer{% endif %}</span>
+                        <span class="sep">|</span>
+                        <span class="role">{% if lang == 'es' %}Ingeniero de Sistemas Full-Stack{% else %}Full-Stack Systems Engineer{% endif %}</span>
+                    </p>
+                </header>
+
+                <div class="skills-tags">
+                    <span class="tag">{% if lang == 'es' %}AWS y Nube{% else %}AWS & Cloud{% endif %}</span>
+                    <span class="tag">{% if lang == 'es' %}Alto Rendimiento{% else %}High Performance{% endif %}</span>
+                    <span class="tag">{% if lang == 'es' %}Optimización de Consultas{% else %}Query Optimization{% endif %}</span>
+                    <span class="tag">{% if lang == 'es' %}Arquitectura de Datos{% else %}Data Architecture{% endif %}</span>
+                    <span class="tag">{% if lang == 'es' %}Escalabilidad de Sistemas{% else %}Systems Scalability{% endif %}</span>
+                    <span class="tag">{% if lang == 'es' %}Docker y Contenedores{% else %}Docker & Containers{% endif %}</span>
+                    <span class="tag">Django & Laravel</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="about-header-grid">
+                <div class="about-title-wrapper">
+                    {% if lang == 'es' %}
+                        <img src="{% static 'tutimi/images/aceeerca_de_mi.svg' %}" alt="ACERCA DE MI" class="about-title-svg" />
+                    {% else %}
+                        <img src="{% static 'tutimi/images/abooout_me.svg' %}" alt="ABOUT ME" class="about-title-svg" />
+                    {% endif %}
+                    
+                </div>
+
+                <nav class="site-nav-links">
+                    <a href="{{ GITHUB_URL }}" target="_blank" rel="noopener">GitHub</a>
+                    <a href="{{ LINKEDIN_URL }}" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="mailto:{{ CONTACT_EMAIL }}">Email</a>
+                    <a href="/case-studies/" class="link-disabled">{% if lang == 'es' %}Casos de Estudio{% else %}Case Studies{% endif %}</a>
+                </nav>
+            </div>
+
+            <div class="about-grid">
+                <article class="about-panel panel-full highlight-panel">
+                    <p>
+                        {% if lang == 'es' %}
+                            No solo escribo código o aprovisiono servidores; <strong class="text-highlight">diseño tranquilidad mental.</strong> Durante más de {{ years_experience }} años, mi misión principal ha sido construir, escalar y proteger infraestructura en la nube para que los líderes del negocio y equipos de desarrollo puedan <span class="text-highlight">dormir tranquilos por la noche</span>. Tiendo las autopistas resilientes y de alta velocidad que permiten a los ingenieros desplegar rápido, innovar libremente y lanzar código sin la ansiedad de tumbar producción.
+                        {% else %}
+                            I don’t just write code or provision servers; <strong class="text-highlight">I engineer peace of mind.</strong> For over {{ years_experience }} years, my core mission has been to build, scale, and safeguard cloud infrastructure so that business leadership and development teams can <span class="text-highlight">sleep soundly at night</span>. I lay down the resilient, high-speed highways that allow engineers to deploy fast, innovate freely, and ship code without the anxiety of bringing down production.
+                        {% endif %}
+                    </p>
+                </article>
+
+                <div class="tags-intercalated panel-full">
+                    <span class="tags-subtitle">{% if lang == 'es' %}INFRAESTRUCTURA Y ARQUITECTURA CLOUD{% else %}INFRASTRUCTURE & CLOUD ARCHITECTURE{% endif %}</span>
+                    <div class="skills-tags">
+                        <span class="tag">AWS (EC2, RDS, Lambda)</span>
+                        <span class="tag">Nginx & ELB</span>
+                        <span class="tag">OpenSearch & MariaDB</span>
+                        <span class="tag">Serverless (Athena & S3)</span>
+                        <span class="tag">{% if lang == 'es' %}Seguridad Cloud y WAF{% else %}Cloud Security & WAF{% endif %}</span>
+                        <span class="tag">{% if lang == 'es' %}CloudWatch y Optimización{% else %}CloudWatch & Optimization{% endif %}</span>
+                    </div>
+                </div>
+
+                <article class="about-panel" style="background: #DED4F9">
+                    <p>
+                        {% if lang == 'es' %}
+                            Mi enfoque hacia la infraestructura es <span class="text-highlight">profundamente matemático e intuitivo</span>. Cuando surgen cuellos de botella críticos, no confío en adivinanzas. Percibo los sistemas complejos como un nudo de hilos enredados, identificando el nodo central exacto a desenredar hasta que toda la arquitectura vuelva a respirar y fluir. Donde otros ven caos operativo, <span class="text-highlight">yo percibo ecuaciones esperando ser simplificadas.</span>
+                        {% else %}
+                            My approach to infrastructure is <span class="text-highlight">deeply mathematical and intuitive</span>. When critical bottlenecks emerge, I don't rely on guesswork. I perceive complex systems as a knot of tangled threads—identifying the exact central node to untangle until the entire architecture breathes and flows again. Where others see operational chaos, <span class="text-highlight">I perceive equations waiting to be simplified.</span>
+                        {% endif %}
+                    </p>
+                </article>
+
+                <article class="about-panel" style="background: #F1E8B9">
+                    <p>
+                        {% if lang == 'es' %}
+                            Más allá de la ingeniería pura, <span class="text-highlight">abordo los sistemas como un artista</span>. Tengo una necesidad inherente de simetría, balance y coherencia absoluta entre los entornos de desarrollo local y la nube. Para mí, el desorden visual y el desperdicio del sistema son lo mismo: clusters innecesarios de EC2 u OpenSearch, capacidad ociosa en bases de datos o gigabytes de archivos duplicados generando costos fantasma <span class="text-highlight">rompen la armonía de un sistema</span>.
+                        {% else %}
+                            Beyond raw engineering, <span class="text-highlight">I approach systems as an artist</span>. I have an inherent need for symmetry, balance, and absolute coherence between local development environments and the cloud. To me, visual clutter and system waste are the same thing: unnecessary EC2 or OpenSearch clusters, idle database capacity, or gigabytes of duplicated media generating ghost costs <span class="text-highlight">disrupt the harmony of a system</span>.
+                        {% endif %}
+                    </p>
+                </article>
+
+                <article class="about-panel panel-full">
+                    <p>
+                        {% if lang == 'es' %}
+                            La verdadera artesanía radica en la <span class="text-highlight">eficiencia radical y la elegancia intencional</span>. En lugar de delegar a ciegas cada tarea a una automatización en la nube pesada y costosa, miro bajo el capó: analizando logs crudos mediante consultas serverless con Athena y Trino directamente sobre S3 para <span class="text-highlight">resolver problemas complejos a una fracción del costo</span>, utilizando herramientas como CloudWatch con intención quirúrgica donde generan el mayor ROI (como aislar consultas lentas). Un sistema óptimo no es solo uno que funciona; es uno donde la <strong class="text-highlight">arquitectura, la estética y la eficiencia de recursos existen en perfecto equilibrio.</strong>
+                        {% else %}
+                            True craftsmanship lies in <span class="text-highlight">radical efficiency and intentional elegance</span>. Instead of blindly delegating every task to heavy, expensive cloud automation, I look under the hood: analyzing raw logs via serverless queries with Athena and Trino directly over S3 to <span class="text-highlight">solve complex problems at a fraction of the cost</span>, using tools like CloudWatch with surgical intent where they yield the highest ROI—like isolating slow queries. An optimal system isn't just one that runs; it's one where <strong class="text-highlight">architecture, aesthetics, and resource efficiency exist in perfect equilibrium.</strong>
+                        {% endif %}
+                    </p>
+                </article>
+
+                <div class="tags-intercalated panel-full">
+                    <span class="tags-subtitle">{% if lang == 'es' %}BACKEND, INTEGRACIONES Y HERRAMIENTAS{% else %}BACKEND, INTEGRATIONS & TOOLING{% endif %}</span>
+                    <div class="skills-tags">
+                        <span class="tag">Python & Django</span>
+                        <span class="tag">PHP & Laravel</span>
+                        <span class="tag">{% if lang == 'es' %}Stripe y Pasarelas de Pago{% else %}Stripe & Payment Gateways{% endif %}</span>
+                        <span class="tag">{% if lang == 'es' %}Integración de OpenAI API{% else %}OpenAI API Integration{% endif %}</span>
+                        <span class="tag">REST APIs</span>
+                        <span class="tag">Git & GitHub</span>
+                    </div>
+                </div>
+
+                <nav class="site-nav-links panel-full">
+                    <a href="{{ GITHUB_URL }}" target="_blank" rel="noopener">GitHub</a>
+                    <a href="{{ LINKEDIN_URL }}" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="mailto:{{ CONTACT_EMAIL }}">Email</a>
+                    <a href="/case-studies/" class="link-disabled">{% if lang == 'es' %}Casos de Estudio{% else %}Case Studies{% endif %}</a>
+                </nav>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
